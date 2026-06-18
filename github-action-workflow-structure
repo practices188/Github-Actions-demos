@@ -1,0 +1,39 @@
+# This is the structure of how you will be writing github actions
+# we create a workflow, give a name to the workflow
+
+
+# give name of the workflow
+name: Give any name # key storing single value
+on:
+  - push:
+  - fork
+  - workflow_dispatch  # manually run by clicking on run button
+ 
+# on = on what event or events will we trigger the workflow
+# value for thsi key is given to you by github actions
+
+
+jobs:
+  job1:
+    runs-on: give runner name
+    steps:
+    - name: step1
+      run: give a command to run
+    - name: step1
+      run: give a command to run
+  job2:
+  job3:
+ 
+ 
+---
+name: give name of workflow
+on:
+ details of trigger
+jobs:
+  job1:
+    runs-on:
+    steps:
+    - name:
+      run:
+  job2:
+
