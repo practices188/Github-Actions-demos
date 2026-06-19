@@ -1,31 +1,35 @@
 name: Build python application
-on: 
-  workflow_dispatch: 
+
+on:
+  workflow_dispatch:
   push:
     paths:
-      - Jenkins-Python-Pipeline-demo/**
+      - 'Jenkins-Python-Pipeline-demo/**'
+
 jobs:
   job1:
     runs-on: ubuntu-latest
+
     defaults:
       run:
         working-directory: Jenkins-Python-Pipeline-demo
+
     steps:
-      - name: clone the repo
-        uses: actions/checkout@v6
-        
-      - name: Install python on runner
-        uses: actions/setup-python@v6
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-          
+
       - name: Install Python Dependencies
         run: |
-        pip install --upgrade pip
-        pip install -r requirements.txt
-        
-      - name: set pythonPATH
-        run: echo "PYTHONPATH"=$GITHUB_WORKSPACE >> $GITHUB_ENV
-        
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Set PYTHONPATH
+        run: echo "PYTHONPATH=$GITHUB_WORKSPACE" >> $GITHUB_ENV
+
       - name: Run tests
         run: pytest tests --cov=app --cov-report=xml
