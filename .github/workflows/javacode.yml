@@ -1,0 +1,28 @@
+name: Build Java application
+
+on:
+  push:
+    paths:
+      - 'SonarQubeCoverageJava/**'
+  workflow_dispatch: 
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: SonarQubeCoverageJava
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Install Java on runner
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Build Java code
+        run: mvn clean package
