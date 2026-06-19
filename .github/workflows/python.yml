@@ -20,9 +20,10 @@ jobs:
           python-version: '3.11'
           
       - name: Install Python Dependencies
-        run: |
-        pip install --upgrade pip
-        pip install -r requirements.txt
+        run: pip install --upgrade pip
+        run: pip install -r requirements.txt
+        
+        
         
       - name: set pythonPATH
         run: echo "PYTHONPATH"=$GITHUB_WORKSPACE >> $GITHUB_ENV
