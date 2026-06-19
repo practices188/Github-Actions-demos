@@ -23,15 +23,15 @@ jobs:
   job2:
     runs-on: ubuntu-latest
     env: 
-      MYJOB-PYTHON-VERSION: 3.8
+      MYJOB_PYTHON_VERSION: 3.8
     steps:
       - name: checkout code
         uses: actions/checkout@v4
 
-      - name: setup python ${{MYJOB-PYTHON-VERSION}}
+      - name: setup python ${{env.MYJOB_PYTHON_VERSION}}
         uses: actions/setup-python@v5
         with:
-          python-version: ${{env.MYJOB-PYTHON-VERSIONVERSION}}
+          python-version: ${{env.MYJOB_PYTHON_VERSION}}
 
 
   job3:
