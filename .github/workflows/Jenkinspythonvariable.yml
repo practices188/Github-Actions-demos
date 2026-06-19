@@ -1,0 +1,55 @@
+name: Build python application
+on: 
+  workflow_dispatch: 
+  push:
+    paths:
+      - Jenkins-Python-Pipeline-demo/**
+env:
+  PYTHON_VERSION: 3.9      
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Jenkins-Python-Pipeline-demo
+    steps:
+      - name: clone the repo
+        uses: actions/checkout@v6
+
+      - name: setup python ${{env.PYTHON_VERSION}}
+        uses: actions/setup-python@v6
+        with:
+          python-version: ${{env.PYTHON_VERSION}}
+  job2:
+    runs-on: ubuntu-latest
+    env: 
+      MYJOB-PYTHON_VERSION: 3.8
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+
+      - name: setup python ${{MYJOB-PYTHON_VERSION}}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{env.MYJOB-PYTHON_VERSION}}
+
+
+  job3:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+        
+      - name: setup python
+        env:
+          MYSTEP_PYTHON_VERSION: 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{env.MYSTEP_PYTHON_VERSION}}
+          
+      - name: print a message
+        env:
+          APPLICATION: python
+        run: echo "The application installed is $APPLICATION"
+      
+     
